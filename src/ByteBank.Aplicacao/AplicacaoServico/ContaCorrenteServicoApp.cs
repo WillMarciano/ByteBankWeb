@@ -11,8 +11,8 @@ namespace ByteBank.Aplicacao.AplicacaoServico
 
         private readonly IContaCorrenteServico _servico;
 
-        private readonly IAgenciaServicoApp agenciaServico;
-        private readonly IClienteServicoApp clienteServico;
+        private readonly AgenciaServicoApp agenciaServico;
+        private readonly ClienteServicoApp clienteServico;
 
         private readonly Mapper _mapper;
 
