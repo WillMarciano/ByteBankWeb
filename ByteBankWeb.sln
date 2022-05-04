@@ -13,13 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Apresentacao", "3-Apresen
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Testes", "4-Testes", "{42E8D292-ECE5-40EA-BA64-5493807CB491}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteBank.Dominio", "src\ByteBank.Dominio\ByteBank.Dominio.csproj", "{CB92BCC4-333E-4DAF-B91C-2810ABCF404B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteBank.Dominio", "src\ByteBank.Dominio\ByteBank.Dominio.csproj", "{CB92BCC4-333E-4DAF-B91C-2810ABCF404B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteBank.Aplicacao", "src\ByteBank.Aplicacao\ByteBank.Aplicacao.csproj", "{5244D0FB-D8A9-4E92-BF01-713CEE54F3A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteBank.Aplicacao", "src\ByteBank.Aplicacao\ByteBank.Aplicacao.csproj", "{5244D0FB-D8A9-4E92-BF01-713CEE54F3A9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dados", "Dados", "{9806B2D3-13EF-4EE0-A549-9EDF42368E18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteBank.Dados", "src\ByteBank.Dados\ByteBank.Dados.csproj", "{4978C5D5-0160-4ED4-9DCE-F797E86E3B28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteBank.Dados", "src\ByteBank.Dados\ByteBank.Dados.csproj", "{4978C5D5-0160-4ED4-9DCE-F797E86E3B28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteBank.Apresentacao", "src\ByteBank.Apresentacao\ByteBank.Apresentacao.csproj", "{4785A321-7B0A-4C23-AA83-99FF9DF040E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{4978C5D5-0160-4ED4-9DCE-F797E86E3B28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4978C5D5-0160-4ED4-9DCE-F797E86E3B28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4978C5D5-0160-4ED4-9DCE-F797E86E3B28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4785A321-7B0A-4C23-AA83-99FF9DF040E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4785A321-7B0A-4C23-AA83-99FF9DF040E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4785A321-7B0A-4C23-AA83-99FF9DF040E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4785A321-7B0A-4C23-AA83-99FF9DF040E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{5244D0FB-D8A9-4E92-BF01-713CEE54F3A9} = {85BC3862-6369-4B3A-9543-63EDAB6AAEAB}
 		{9806B2D3-13EF-4EE0-A549-9EDF42368E18} = {7B4C3D45-7E60-4436-BD00-92D52DD04319}
 		{4978C5D5-0160-4ED4-9DCE-F797E86E3B28} = {9806B2D3-13EF-4EE0-A549-9EDF42368E18}
+		{4785A321-7B0A-4C23-AA83-99FF9DF040E8} = {D53656DF-B42A-45B1-B8F9-1ACBF95FF66E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28F3DB61-7650-4ACB-811B-920987BCBA53}
