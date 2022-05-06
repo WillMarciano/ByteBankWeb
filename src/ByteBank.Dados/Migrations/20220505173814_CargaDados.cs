@@ -19,7 +19,7 @@ namespace ByteBank.Dados.Migrations
             migrationBuilder.Sql("INSERT INTO conta_corrente (Numero,ClienteId,Agenciaid,Saldo,Identificador,PixConta) VALUES(1789, 2, 2, 400, 'fd3a2250-27d9-48f4-ae89-9eea10a93396', '00000000-0000-0000-0000-000000000000')");
 
             migrationBuilder.Sql("INSERT INTO usuario (UserName, Email, Senha) VALUES ('admin','admin@email.com','0B267E19390CBE8D406F49C2D287473DDB60014B2E1588F431C6F2409511B8D6');");//senha01
-            migrationBuilder.Sql("INSERT INTO usuario (UserName, Email, Senha) VALUES ('suporte', 'suporte@email.com', '8BA689219A79BBFB161F028A1C57CB02BB58241915D8EB53A7B6C347F64A8394');");//s
+            migrationBuilder.Sql("INSERT INTO usuario (UserName, Email, Senha) VALUES ('suporte', 'suporte@email.com', '8BA689219A79BBFB161F028A1C57CB02BB58241915D8EB53A7B6C347F64A8394');");//senha02
 
         }
 

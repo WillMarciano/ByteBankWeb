@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -20,10 +23,24 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" id="home" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" id="agencia" asp-controller="Agencia" asp-action="Index">Agência</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" id="clientes" asp-controller="Clientes" asp-action="Index">Cliente</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" id="contacorrente" asp-controller="ContaCorrentes" asp-action="Index">Conta-Corrente</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav flex-grow-2">
+                        <li class="nav-item">
+                            @*<a class="nav-link text-dark" asp-area="" asp-controller="UsuarioApps" asp-action="Logout">Logout</a>*@
+                            <form method="post" asp-controller="UsuarioApps" asp-action="Logout">
+                                <input class="btn btn-link text-dark" type="submit" value="Logout | @HttpContextAccessor.HttpContext.Session.GetString("user")" />
+                            </form>
                         </li>
                     </ul>
                 </div>
