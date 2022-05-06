@@ -7,6 +7,8 @@ namespace ByteBank.Dominio.Entidades
     {
         [Key]
         public int Id { get; set; }
+        public Guid Identificador { get; set; }
+
         private int _numero;
         public int Numero
         {
@@ -41,13 +43,13 @@ namespace ByteBank.Dominio.Entidades
             set
             {
                 if (value.Length < 10)
-                    throw new FormatException("Endereço deve possuir pelo menos 10 caractere.");
+                    throw new FormatException("Endereço deve possuir pelo menos 10 caracteres.");
 
                 _endereco = value;
             }
         }
-        public virtual ICollection<ContaCorrente> Contas { get; set; }
-        public Guid Identificador { get; set; }
+        public ICollection<ContaCorrente> Contas { get; set; }
+        
         public Agencia() => Contas = new Collection<ContaCorrente>();
     }
 }

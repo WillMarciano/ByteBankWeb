@@ -11,14 +11,12 @@ namespace ByteBank.Apresentacao.Comandos
     {
         readonly IContaCorrenteRepositorio _repositorio;
         readonly IContaCorrenteServico _servico;
-        readonly IClienteServico _cliente;
-        IAgenciaServico _agencia;
         readonly ContaCorrenteServicoApp contaCorrenteServicoApp;
         public ContaCorrenteComando()
         {
             _repositorio = new ContaCorrenteRepositorio();
             _servico = new ContaCorrenteServico(_repositorio);
-            contaCorrenteServicoApp = new ContaCorrenteServicoApp(_servico, _agencia, _cliente);
+            contaCorrenteServicoApp = new ContaCorrenteServicoApp(_servico);
         }
 
         public bool Adicionar(ContaCorrenteDTO conta) => contaCorrenteServicoApp.Adicionar(conta);

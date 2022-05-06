@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ByteBank.Dados.Migrations
 {
     [DbContext(typeof(ByteBankContexto))]
-    [Migration("20220504203131_PopularBancoByteBank")]
-    partial class PopularBancoByteBank
+    [Migration("20220505173800_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

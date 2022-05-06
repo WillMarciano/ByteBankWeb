@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace ByteBank.Dominio.Entidades
@@ -21,7 +20,7 @@ namespace ByteBank.Dominio.Entidades
                 if (ValidaCPF(value) == false)
                     throw new FormatException("CPF inválido.");
 
-                _cpf = value;
+                _cpf = value.Replace(".", "").Replace("-", "");
             }
         }
         private string _nome;
@@ -43,9 +42,8 @@ namespace ByteBank.Dominio.Entidades
             }
         }
         public string Profissao { get; set; }
-        public virtual ICollection<ContaCorrente> Contas { get; set; }
-        public Cliente() => Contas = new Collection<ContaCorrente>();
-
+        public ICollection<ContaCorrente> Contas { get; set; }
+        public Cliente() { }
         private bool ValidaCPF(string cpfParaValidacao)
         {
             int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };

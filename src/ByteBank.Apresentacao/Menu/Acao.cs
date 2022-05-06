@@ -16,7 +16,7 @@ namespace ByteBank.Apresentacao.Menu
             char opcao;
             Console.Clear();
             Console.WriteLine("\n[CADASTRO DE CONTAS CORRENTES]");
-            Console.Write("\nVocê deseja cadastrar um novo cliente? [s - sim ou n - não] ");
+            Console.Write("\nVocê deseja cadastrar um novo cliente? [s - sim ou n - não]: ");
             opcao = Console.ReadLine()[0];
             if (opcao == 's')
             {
@@ -63,6 +63,7 @@ namespace ByteBank.Apresentacao.Menu
             }
 
             comando.Adicionar(contaDTO);
+            Console.WriteLine("");
             Console.WriteLine(contaDTO.ToString());
             Console.ReadKey();
 

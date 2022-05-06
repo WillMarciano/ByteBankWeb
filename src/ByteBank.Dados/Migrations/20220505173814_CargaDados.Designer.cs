@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ByteBank.Dados.Migrations
 {
     [DbContext(typeof(ByteBankContexto))]
-    [Migration("20220504203332_InsereUsuario")]
-    partial class InsereUsuario
+    [Migration("20220505173814_CargaDados")]
+    partial class CargaDados
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

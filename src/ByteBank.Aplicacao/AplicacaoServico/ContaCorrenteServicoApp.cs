@@ -16,10 +16,8 @@ namespace ByteBank.Aplicacao.AplicacaoServico
 
         private readonly Mapper _mapper;
 
-        public ContaCorrenteServicoApp(IContaCorrenteServico servico, IAgenciaServico _agenciaServico, IClienteServico _clienteServico)
+        public ContaCorrenteServicoApp(IContaCorrenteServico servico)
         {
-            agenciaServico = new AgenciaServicoApp(_agenciaServico);
-            clienteServico = new ClienteServicoApp(_clienteServico);
             _servico = servico;
             var config = new MapperConfiguration(cfg => {
                 cfg.CreateMap<ContaCorrente, ContaCorrenteDTO>().ReverseMap();
@@ -28,13 +26,9 @@ namespace ByteBank.Aplicacao.AplicacaoServico
             });
             _mapper = new(config);
         }
-        
+
         public bool Adicionar(ContaCorrenteDTO conta)
-        {
-            conta.Cliente = clienteServico.ObterPorId(conta.ClienteId);
-            conta.Agencia = agenciaServico.ObterPorId(conta.AgenciaId);
-            return _servico.Adicionar(_mapper.Map<ContaCorrenteDTO, ContaCorrente>(conta));
-        }
+            => _servico.Adicionar(_mapper.Map<ContaCorrenteDTO, ContaCorrente>(conta));
 
         public bool Atualizar(int id, ContaCorrenteDTO conta) => _servico.Atualizar(id, _mapper.Map<ContaCorrenteDTO, ContaCorrente>(conta));
 

@@ -15,10 +15,10 @@ namespace ByteBank.Dados.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Identificador = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Numero = table.Column<int>(type: "int", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Endereco = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Identificador = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Endereco = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,8 +62,8 @@ namespace ByteBank.Dados.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Numero = table.Column<int>(type: "int", nullable: false),
                     Identificador = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Numero = table.Column<int>(type: "int", nullable: false),
                     ClienteId = table.Column<int>(type: "int", nullable: false),
                     AgenciaId = table.Column<int>(type: "int", nullable: false),
                     Saldo = table.Column<double>(type: "float", nullable: false),
