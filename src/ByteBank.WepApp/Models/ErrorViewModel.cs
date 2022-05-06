@@ -1,4 +1,4 @@
-namespace ByteBank.WebApp.Models
+namespace ByteBank.WepApp.Models
 {
     public class ErrorViewModel
     {

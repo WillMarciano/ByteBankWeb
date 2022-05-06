@@ -1,8 +1,8 @@
-﻿using ByteBank.WebApp.Models;
+﻿using ByteBank.WepApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace ByteBank.WebApp.Controllers
+namespace ByteBank.WepApp.Controllers
 {
     public class HomeController : Controller
     {

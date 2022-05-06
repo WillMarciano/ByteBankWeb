@@ -3,16 +3,16 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:60580",
-      "sslPort": 44391
+      "applicationUrl": "http://localhost:34524",
+      "sslPort": 44351
     }
   },
   "profiles": {
-    "ByteBank.WebApp": {
+    "ByteBank.WepApp": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7276;http://localhost:5276",
+      "applicationUrl": "https://localhost:7155;http://localhost:5155",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
