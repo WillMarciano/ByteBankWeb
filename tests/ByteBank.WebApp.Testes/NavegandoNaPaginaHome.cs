@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Interactions;
 using System.IO;
 using System.Reflection;
 using Xunit;
@@ -50,6 +49,22 @@ namespace ByteBank.WebApp.Testes
             driver.FindElement(By.Id("Senha")).Click();
             driver.FindElement(By.Id("Senha")).SendKeys("senha01");
             driver.FindElement(By.Id("btn-logar")).Click();
+        }
+
+        [Fact]
+        public void ValidaLinkDeLoginNaHome()
+        {
+            //Arrange
+            IWebDriver driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            driver.Navigate().GoToUrl("https://localhost:7155");
+
+            var linkLogin = driver.FindElement(By.LinkText("Login"));
+
+            //Act
+            linkLogin.Click();
+
+            //Assert
+            Assert.Contains("img", driver.PageSource);
         }
     }
 }
