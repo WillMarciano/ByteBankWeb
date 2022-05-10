@@ -4,19 +4,22 @@
         ViewData["Title"] = "Contas Correntes";
     }
 
-    <h1>Contas-Correntes</h1>
+    <h4>Contas-Correntes</h4>
 
     <p>
-        <a asp-action="Create">Adicionar Conta-Corrente</a>
+        <a asp-action="Create" class="btn btn-sm btn-outline-info">Adicionar Conta-Corrente</a>
     </p>
-    <table class="table table-dark table-striped">
+    <table class="table table-white table-striped">
         <thead>
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Numero)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Identificador)
+                    @Html.DisplayNameFor(model => model.Cliente.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cliente.CPF)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Saldo)
@@ -35,7 +38,10 @@
                         @Html.DisplayFor(modelItem => item.Numero)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Identificador)
+                        @Html.DisplayFor(modelItem => item.Cliente.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cliente.CPF)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Saldo)

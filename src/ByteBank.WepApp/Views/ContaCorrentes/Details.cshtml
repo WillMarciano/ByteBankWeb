@@ -4,26 +4,25 @@
     ViewData["Title"] = "Detalhes Conta";
 }
 
-<h1>Details</h1>
+<h4>Detalhes Conta-Corrente Nº: @Model.Numero</h4>
 
 <div>
-    <h4>ContaCorrente</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Cliente.Nome)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ClienteId)
+            @Html.DisplayFor(model => model.Cliente.Nome)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Agencia.Nome)
+            Agência
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.AgenciaId)
+            @Html.DisplayFor(model => model.Agencia.Numero)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Numero)
+            Conta Corrente
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Numero)
@@ -49,6 +48,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a> |
-    <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm btn-outline-primary">Editar</a>
+    <a asp-action="Index" class="btn btn-sm btn-outline-secondary">Voltar</a>
 </div>

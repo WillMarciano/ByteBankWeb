@@ -1,19 +1,19 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System.IO;
-using System.Reflection;
 using Xunit;
 
 namespace ByteBank.WebApp.Testes
 {
     public class NavegandoNaPaginaHome
     {
+        public IWebDriver driver { get; private set; }
+        public NavegandoNaPaginaHome() =>
+            //Arrange
+            driver = new ChromeDriver();
+
         [Fact]
         public void CarregaPaginaHomeEVerificaTituloDaPagina()
-        {
-            //Arrange
-            IWebDriver driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-
+        {            
             //Act
             driver.Navigate().GoToUrl("https://localhost:7155");
 
@@ -24,9 +24,6 @@ namespace ByteBank.WebApp.Testes
         [Fact]
         public void CarregaPaginaHomeVerificaExistenciaLinkLoginEHomet()
         {
-            //Arrange
-            IWebDriver driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-
             //Act
             driver.Navigate().GoToUrl("https://localhost:7155");
 
@@ -38,9 +35,6 @@ namespace ByteBank.WebApp.Testes
         [Fact]
         public void LogandoNoSistema()
         {
-            //Arrange
-            IWebDriver driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-
             driver.Navigate().GoToUrl("https://localhost:7155/");
             driver.Manage().Window.Size = new System.Drawing.Size(1280, 672);
             driver.FindElement(By.LinkText("Login")).Click();
@@ -55,9 +49,7 @@ namespace ByteBank.WebApp.Testes
         public void ValidaLinkDeLoginNaHome()
         {
             //Arrange
-            IWebDriver driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-            driver.Navigate().GoToUrl("https://localhost:7155");
-
+            driver.Navigate().GoToUrl("https://localhost:7155/");
             var linkLogin = driver.FindElement(By.LinkText("Login"));
 
             //Act
@@ -65,6 +57,17 @@ namespace ByteBank.WebApp.Testes
 
             //Assert
             Assert.Contains("img", driver.PageSource);
+        }
+
+        [Fact]
+        public void AcessarPaginaSemEstarLogado()
+        {
+            //Act
+            driver.Navigate().GoToUrl("https://localhost:7155/Agencia/Index");
+
+            //Assert
+            Assert.Contains("https://localhost:7155/Agencia/Index", driver.PageSource);
+            Assert.Contains("401", driver.PageSource);
         }
     }
 }

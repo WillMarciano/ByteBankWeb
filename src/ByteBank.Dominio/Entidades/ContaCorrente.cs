@@ -6,10 +6,8 @@ namespace ByteBank.Dominio.Entidades
     {
         [Key]
         public int Id { get; set; }
+        public int Numero { get; set; }
 
-        public Guid Identificador { get; set; }
-        public int Numero { get; set; }        
-        
         private Cliente _cliente;
 
         public virtual Cliente Cliente
@@ -48,6 +46,9 @@ namespace ByteBank.Dominio.Entidades
                 _saldo += value;
             }
         }
+
+        public Guid Identificador { get; set; }
+
         private Guid _pix;
         public Guid PixConta { get => _pix; set => _pix = value; }
 

@@ -26,7 +26,7 @@ namespace ByteBank.WebApp.Controllers
             _servico = new ContaCorrenteServico(_repositorio);
             _servicoCliente = new ClienteServico(repositorioCliente);
             _servicoAgencia = new AgenciaServico(repositorioAgencia); ;
-            contaCorrenteServicoApp = new ContaCorrenteServicoApp(_servico);
+            contaCorrenteServicoApp = new ContaCorrenteServicoApp(_servico, _servicoAgencia, _servicoCliente);
         }
         [Authorize]
         public ActionResult Index() => View(contaCorrenteServicoApp.ObterTodos());

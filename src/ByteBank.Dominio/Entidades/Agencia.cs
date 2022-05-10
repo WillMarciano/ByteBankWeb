@@ -7,7 +7,6 @@ namespace ByteBank.Dominio.Entidades
     {
         [Key]
         public int Id { get; set; }
-        public Guid Identificador { get; set; }
 
         private int _numero;
         public int Numero
@@ -49,7 +48,9 @@ namespace ByteBank.Dominio.Entidades
             }
         }
         public ICollection<ContaCorrente> Contas { get; set; }
-        
+
+        public Guid Identificador { get; set; }
+
         public Agencia() => Contas = new Collection<ContaCorrente>();
     }
 }

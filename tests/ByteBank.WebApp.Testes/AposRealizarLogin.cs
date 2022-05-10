@@ -8,11 +8,15 @@ namespace ByteBank.WebApp.Testes
 {
     public class AposRealizarLogin
     {
+        public IWebDriver driver { get; private set; }
+        public AposRealizarLogin() =>
+            //Arrange
+            driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+
         [Fact]
         public void AposRealizarLoginVerificarSeExisteOpcaoAgenciaMenu()
         {
             //Arrange
-            IWebDriver driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
             driver.Navigate().GoToUrl("https://localhost:7155/UsuarioApps/Login");
 
             var email = driver.FindElement(By.Id("Email"));
@@ -33,7 +37,6 @@ namespace ByteBank.WebApp.Testes
         public void TentaRealizarLoginSemPreencherCampos()
         {
             //Arrange
-            IWebDriver driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
             driver.Navigate().GoToUrl("https://localhost:7155/UsuarioApps/Login");
 
             var email = driver.FindElement(By.Id("Email"));
@@ -51,7 +54,6 @@ namespace ByteBank.WebApp.Testes
         public void TentaRealizarLoginComSenhaInvalida()
         {
             //Arrange
-            IWebDriver driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
             driver.Navigate().GoToUrl("https://localhost:7155/UsuarioApps/Login");
 
             var email = driver.FindElement(By.Id("Email"));
@@ -66,6 +68,26 @@ namespace ByteBank.WebApp.Testes
 
             //Assert
             Assert.Contains("Login", driver.PageSource);
+        }
+
+        [Fact]
+        public void realizarLoginAcessaMenuECadastraCliente()
+        {
+            //Arrange
+            driver.Navigate().GoToUrl("https://localhost:7155/UsuarioApps/Login");
+
+            var email = driver.FindElement(By.Id("Email"));
+            var senha = driver.FindElement(By.Id("Senha"));
+
+            email.SendKeys("admin@email.com");
+            senha.SendKeys("senha01");
+
+            driver.FindElement(By.CssSelector(".btn")).Click();
+            driver.FindElement(By.LinkText("Cliente")).Click();
+            driver.FindElement(By.LinkText("Adicionar Cliente")).Click();
+
+            driver.FindElement(By.LinkText("Cliente")).Click();
+
         }
     }
 }

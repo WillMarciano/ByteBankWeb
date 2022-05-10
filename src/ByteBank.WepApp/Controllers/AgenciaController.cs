@@ -40,7 +40,7 @@ namespace ByteBank.WebApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Create([Bind("Id,Identificador,Numero,Nome,Endereco")] AgenciaDTO agencia)
+        public ActionResult Create([Bind("Id,Numero,Nome,Endereco,Identificador")] AgenciaDTO agencia)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace ByteBank.WebApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit(int id, [Bind("Id,Identificador,Numero,Nome,Endereco")] AgenciaDTO agencia)
+        public ActionResult Edit(int id, [Bind("Id,Numero,Nome,Endereco, Identificador")] AgenciaDTO agencia)
         {
 
             if (id != agencia.Id)
