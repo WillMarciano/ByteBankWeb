@@ -73,28 +73,19 @@ namespace ByteBank.WebApp.Controllers
         public ActionResult Edit(int id, [Bind("Id,ClienteId,AgenciaId,Numero,Identificador,Saldo,PixConta")] ContaCorrenteDTO contaCorrente)
         {
             if (id != contaCorrente.Id) return NotFound();
-
-
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    contaCorrenteServicoApp.Atualizar(id, contaCorrente);
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ContaCorrenteExists(contaCorrente.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                contaCorrenteServicoApp.Atualizar(id, contaCorrente);
             }
-            return View(contaCorrente);
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ContaCorrenteExists(contaCorrente.Id))
+                    return NotFound();
+                else
+                    return View(contaCorrente);
+
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         [Authorize]

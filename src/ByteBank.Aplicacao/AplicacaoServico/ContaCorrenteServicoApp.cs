@@ -36,7 +36,12 @@ namespace ByteBank.Aplicacao.AplicacaoServico
             return _servico.Adicionar(_mapper.Map<ContaCorrenteDTO, ContaCorrente>(conta));
         }
 
-        public bool Atualizar(int id, ContaCorrenteDTO conta) => _servico.Atualizar(id, _mapper.Map<ContaCorrenteDTO, ContaCorrente>(conta));
+        public bool Atualizar(int id, ContaCorrenteDTO conta)
+        {
+            conta.Cliente = clienteServico.ObterPorId(conta.ClienteId);
+            conta.Agencia = agenciaServico.ObterPorId(conta.AgenciaId);
+            return _servico.Atualizar(id, _mapper.Map<ContaCorrenteDTO, ContaCorrente>(conta));
+        } 
 
         public bool Excluir(int id) => _servico.Excluir(id);
 

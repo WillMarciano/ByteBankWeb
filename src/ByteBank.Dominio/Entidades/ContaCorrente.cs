@@ -35,7 +35,7 @@ namespace ByteBank.Dominio.Entidades
             }
         }
 
-        private double _saldo = 100;
+        private double _saldo;
         public double Saldo
         {
             get => _saldo;
