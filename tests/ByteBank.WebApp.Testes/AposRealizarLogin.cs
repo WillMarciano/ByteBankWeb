@@ -71,7 +71,7 @@ namespace ByteBank.WebApp.Testes
         }
 
         [Fact]
-        public void realizarLoginAcessaMenuECadastraCliente()
+        public void RealizarLoginAcessaMenuECadastraCliente()
         {
             //Arrange
             driver.Navigate().GoToUrl("https://localhost:7155/UsuarioApps/Login");
@@ -86,7 +86,20 @@ namespace ByteBank.WebApp.Testes
             driver.FindElement(By.LinkText("Cliente")).Click();
             driver.FindElement(By.LinkText("Adicionar Cliente")).Click();
 
-            driver.FindElement(By.LinkText("Cliente")).Click();
+            driver.FindElement(By.Id("CPF")).Click();
+            driver.FindElement(By.Id("CPF")).SendKeys("69981034096");
+            driver.FindElement(By.Id("Nome")).Click();
+            driver.FindElement(By.Id("Nome")).SendKeys("Tobey Garfield");
+            driver.FindElement(By.CssSelector(".form-group:nth-child(3)")).Click();
+            driver.FindElement(By.Id("Profissao")).Click();
+            driver.FindElement(By.Id("Profissao")).SendKeys("Cientista");
+
+            //Act
+            driver.FindElement(By.CssSelector(".btn-outline-primary")).Click();
+            driver.FindElement(By.LinkText("Home")).Click();
+
+            //Assert
+            Assert.Contains("Logout", driver.PageSource);
 
         }
     }
