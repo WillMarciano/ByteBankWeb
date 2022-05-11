@@ -1,4 +1,5 @@
 ﻿using ByteBank.WebApp.Testes.PageObjects;
+using ByteBank.WebApp.Testes.Utilitarios;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Collections.Generic;
@@ -10,15 +11,15 @@ using Xunit.Abstractions;
 
 namespace ByteBank.WebApp.Testes
 {
-    public class AposRealizarLogin
+    public class AposRealizarLogin : IClassFixture<Gerenciador>
     {
         public IWebDriver Driver { get; private set; }
 
         private readonly ITestOutputHelper SaidaConsoleTeste;
-        public AposRealizarLogin(ITestOutputHelper _saidaConsoleTeste)
+        public AposRealizarLogin(Gerenciador gerenciador,ITestOutputHelper _saidaConsoleTeste)
         {
             //Arrange
-            Driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            Driver = gerenciador.Driver;
             SaidaConsoleTeste = _saidaConsoleTeste;
         }
 
@@ -51,7 +52,7 @@ namespace ByteBank.WebApp.Testes
 
             //Assert
             Assert.Contains("The Email field is required.", Driver.PageSource);
-            Assert.Contains("The Senha field is required.", Driver.PageSource);            
+            Assert.Contains("The Senha field is required.", Driver.PageSource);
         }
 
         [Fact]
@@ -132,6 +133,25 @@ namespace ByteBank.WebApp.Testes
 
             //Assert
             Assert.Contains("Voltar", Driver.PageSource);
+        }
+
+        [Fact]
+        public void RealizarLoginAcessaListagemContasUsandoHomePO()
+        {
+            //Arrange
+            var loginPO = new LoginPO(Driver);
+            loginPO.Navegar("https://localhost:7155/UsuarioApps/Login");
+
+            //Act
+            loginPO.PreencherCampos("admin@email.com", "senha01");
+            loginPO.Logar();
+
+            var homePO = new HomePO(Driver);
+            homePO.LinkContaCorrenteClick();
+
+
+            //Assert
+            Assert.Contains("Adicionar Conta-Corrente", Driver.PageSource);
         }
     }
 }

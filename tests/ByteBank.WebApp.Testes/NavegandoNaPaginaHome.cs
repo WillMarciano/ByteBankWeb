@@ -1,73 +1,74 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+﻿using ByteBank.WebApp.Testes.Utilitarios;
+using OpenQA.Selenium;
 using Xunit;
 
 namespace ByteBank.WebApp.Testes
 {
-    public class NavegandoNaPaginaHome
+    public class NavegandoNaPaginaHome : IClassFixture<Gerenciador>
     {
-        public IWebDriver driver { get; private set; }
-        public NavegandoNaPaginaHome() =>
+        public IWebDriver Driver { get; private set; }
+        public NavegandoNaPaginaHome(Gerenciador gerenciador)
+        {
             //Arrange
-            driver = new ChromeDriver();
+            Driver = gerenciador.Driver;
+        }
 
         [Fact]
         public void CarregaPaginaHomeEVerificaTituloDaPagina()
-        {            
+        {
             //Act
-            driver.Navigate().GoToUrl("https://localhost:7155");
+            Driver.Navigate().GoToUrl("https://localhost:7155");
 
             //Assert
-            Assert.Contains("WebApp", driver.Title);
+            Assert.Contains("WebApp", Driver.Title);
         }
 
         [Fact]
         public void CarregaPaginaHomeVerificaExistenciaLinkLoginEHomet()
         {
             //Act
-            driver.Navigate().GoToUrl("https://localhost:7155");
+            Driver.Navigate().GoToUrl("https://localhost:7155");
 
             //Assert
-            Assert.Contains("Login", driver.PageSource);
-            Assert.Contains("Home", driver.PageSource);
+            Assert.Contains("Login", Driver.PageSource);
+            Assert.Contains("Home", Driver.PageSource);
         }
 
         [Fact]
         public void LogandoNoSistema()
         {
-            driver.Navigate().GoToUrl("https://localhost:7155/");
-            driver.Manage().Window.Size = new System.Drawing.Size(1280, 672);
-            driver.FindElement(By.LinkText("Login")).Click();
-            driver.FindElement(By.Id("Email")).Click();
-            driver.FindElement(By.Id("Email")).SendKeys("admin@email.com");
-            driver.FindElement(By.Id("Senha")).Click();
-            driver.FindElement(By.Id("Senha")).SendKeys("senha01");
-            driver.FindElement(By.Id("btn-logar")).Click();
+            Driver.Navigate().GoToUrl("https://localhost:7155/");
+            Driver.Manage().Window.Size = new System.Drawing.Size(1280, 672);
+            Driver.FindElement(By.LinkText("Login")).Click();
+            Driver.FindElement(By.Id("Email")).Click();
+            Driver.FindElement(By.Id("Email")).SendKeys("admin@email.com");
+            Driver.FindElement(By.Id("Senha")).Click();
+            Driver.FindElement(By.Id("Senha")).SendKeys("senha01");
+            Driver.FindElement(By.Id("btn-logar")).Click();
         }
 
         [Fact]
         public void ValidaLinkDeLoginNaHome()
         {
             //Arrange
-            driver.Navigate().GoToUrl("https://localhost:7155/");
-            var linkLogin = driver.FindElement(By.LinkText("Login"));
+            Driver.Navigate().GoToUrl("https://localhost:7155/");
+            var linkLogin = Driver.FindElement(By.LinkText("Login"));
 
             //Act
             linkLogin.Click();
 
             //Assert
-            Assert.Contains("img", driver.PageSource);
+            Assert.Contains("img", Driver.PageSource);
         }
 
         [Fact]
         public void AcessarPaginaSemEstarLogado()
         {
             //Act
-            driver.Navigate().GoToUrl("https://localhost:7155/Agencia/Index");
+            Driver.Navigate().GoToUrl("https://localhost:7155/Agencia/Index");
 
             //Assert
-            Assert.Contains("https://localhost:7155/Agencia/Index", driver.PageSource);
-            Assert.Contains("401", driver.PageSource);
+            Assert.Contains("401", Driver.PageSource);
         }
     }
 }
