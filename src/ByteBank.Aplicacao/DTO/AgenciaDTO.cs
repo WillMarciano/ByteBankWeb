@@ -9,6 +9,15 @@
         public Guid Identificador { get; set; }
 
         public AgenciaDTO() => Identificador = Guid.NewGuid();
+
+        public override string ToString()
+        {
+            return "=== Dados da Agencia ===\n" +
+                   $"Numero Agencia: {Id}\n" +
+                   $"Nome Agencia: {Nome}\n" +
+                   $"Endereco: {Endereco}\n" +
+                   $"Identificador: {Identificador}";
+        }
     }
 
 }
