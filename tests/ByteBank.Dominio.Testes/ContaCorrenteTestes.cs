@@ -27,7 +27,7 @@ namespace ByteBank.Dominio.Testes
             };
 
             //Assert
-            Assert.Equal((saldo + 100), contacorrente.Saldo);
+            Assert.Equal((saldo), contacorrente.Saldo);
             Assert.Equal(id, contacorrente.Id);
             Assert.Equal(identificador, contacorrente.Identificador);
             Assert.NotNull(contacorrente.Agencia);

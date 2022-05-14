@@ -14,13 +14,8 @@ namespace ByteBank.Dados.Contexto
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                .AddJsonFile("appsettings.json")
-                .Build();
-            
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            string stringconexao = "Server = tcp:marcianoserver.database.windows.net,1433; Initial Catalog = ByteBank; Persist Security Info = False; User ID = AdmWillian; Password = Batman2022$; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;";
+            optionsBuilder.UseSqlServer(stringconexao);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
