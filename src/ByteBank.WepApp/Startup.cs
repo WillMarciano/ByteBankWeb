@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ByteBank.WepApp
 {
-    public class Startup : IStartup
+    public class Startup
     {
         public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration) => Configuration = configuration;
@@ -49,10 +49,7 @@ namespace ByteBank.WepApp
         }
         public void Configure(WebApplication app, IWebHostEnvironment environment)
         {
-            if (environment.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            if (environment.IsDevelopment()) app.UseDeveloperExceptionPage();
             else
             {
                 app.UseExceptionHandler("/Home/Error");
@@ -60,11 +57,8 @@ namespace ByteBank.WepApp
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseSession();
-
             app.Use(async (context, next) =>
             {
                 var JWToken = context.Session.GetString("JWToken");
@@ -76,37 +70,13 @@ namespace ByteBank.WepApp
             });
 
             app.UseAuthentication();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=PrincipalHome}/{id?}");
             });
-        }
-    }
-    public interface IStartup
-    {
-        IConfiguration Configuration { get; }
-        void Configure(WebApplication app, IWebHostEnvironment environment);
-        void ConfigureServices(IServiceCollection services);
-    }
-
-    public static class StartupExtensions
-    {
-        public static WebApplicationBuilder UseStartup<TStartup>(this WebApplicationBuilder WebAppBuilder) where TStartup : IStartup
-        {
-            var startup = Activator.CreateInstance(typeof(TStartup), WebAppBuilder.Configuration) as IStartup;
-            if (startup == null) throw new ArgumentException("Classe Startup.cd inváida!");
-
-            startup.ConfigureServices(WebAppBuilder.Services);
-            var app = WebAppBuilder.Build();
-            startup.Configure(app, app.Environment);
-
-            app.Run();
-            return WebAppBuilder;
         }
     }
 }

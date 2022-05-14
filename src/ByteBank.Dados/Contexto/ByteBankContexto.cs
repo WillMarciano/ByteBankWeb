@@ -1,10 +1,12 @@
 ﻿using ByteBank.Dominio.Entidades;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace ByteBank.Dados.Contexto
 {
     public class ByteBankContexto : DbContext
     {
+        private readonly IConfiguration _config;
         public DbSet<ContaCorrente> ContaCorrentes { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Agencia> Agencias { get; set; }
@@ -12,8 +14,13 @@ namespace ByteBank.Dados.Contexto
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string stringconexao = "server=localhost;DataBase=ByteBankWeb;user id=sa; password=Batman2021$";
-            optionsBuilder.UseSqlServer(stringconexao);
+            
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json")
+                .Build();
+            
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
