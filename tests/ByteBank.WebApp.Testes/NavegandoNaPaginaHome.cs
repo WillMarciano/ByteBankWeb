@@ -1,4 +1,5 @@
-﻿using ByteBank.WebApp.Testes.Utilitarios;
+﻿using ByteBank.Dominio.Testes.Utils;
+using ByteBank.WebApp.Testes.Utilitarios;
 using OpenQA.Selenium;
 using Xunit;
 
@@ -12,8 +13,16 @@ namespace ByteBank.WebApp.Testes
             //Arrange
             Driver = gerenciador.Driver;
         }
+        [Fact, TestPriority(1)]
+        public void AcessarPaginaSemEstarLogado()
+        {
+            //Act
+            Driver.Navigate().GoToUrl("https://localhost:7155/Agencia/Index");
 
-        [Fact]
+            //Assert
+            Assert.Contains("401", Driver.PageSource);
+        }
+        [Fact, TestPriority(2)]
         public void CarregaPaginaHomeEVerificaTituloDaPagina()
         {
             //Act
@@ -23,7 +32,7 @@ namespace ByteBank.WebApp.Testes
             Assert.Contains("WebApp", Driver.Title);
         }
 
-        [Fact]
+        [Fact, TestPriority(3)]
         public void CarregaPaginaHomeVerificaExistenciaLinkLoginEHomet()
         {
             //Act
@@ -34,7 +43,7 @@ namespace ByteBank.WebApp.Testes
             Assert.Contains("Home", Driver.PageSource);
         }
 
-        [Fact]
+        [Fact, TestPriority(4)]
         public void LogandoNoSistema()
         {
             Driver.Navigate().GoToUrl("https://localhost:7155/");
@@ -47,7 +56,7 @@ namespace ByteBank.WebApp.Testes
             Driver.FindElement(By.Id("btn-logar")).Click();
         }
 
-        [Fact]
+        [Fact, TestPriority(5)]
         public void ValidaLinkDeLoginNaHome()
         {
             //Arrange
@@ -61,14 +70,6 @@ namespace ByteBank.WebApp.Testes
             Assert.Contains("img", Driver.PageSource);
         }
 
-        [Fact]
-        public void AcessarPaginaSemEstarLogado()
-        {
-            //Act
-            Driver.Navigate().GoToUrl("https://localhost:7155/Agencia/Index");
 
-            //Assert
-            Assert.Contains("401", Driver.PageSource);
-        }
     }
 }

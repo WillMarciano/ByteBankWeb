@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ByteBank.Dominio.Testes\ByteBank.Dominio.Testes.csproj" />
+  </ItemGroup>
+
 </Project>
