@@ -5,6 +5,7 @@ using Xunit;
 
 namespace ByteBank.WebApp.Testes
 {
+    [TestCaseOrderer("XUnit.Project.Orderers.PriorityOrderer", "XUnit.Project")]
     public class NavegandoNaPaginaHome : IClassFixture<Gerenciador>
     {
         public IWebDriver Driver { get; private set; }
@@ -13,6 +14,8 @@ namespace ByteBank.WebApp.Testes
             //Arrange
             Driver = gerenciador.Driver;
         }
+
+  
         [Fact, TestPriority(1)]
         public void AcessarPaginaSemEstarLogado()
         {
@@ -22,6 +25,7 @@ namespace ByteBank.WebApp.Testes
             //Assert
             Assert.Contains("401", Driver.PageSource);
         }
+
         [Fact, TestPriority(2)]
         public void CarregaPaginaHomeEVerificaTituloDaPagina()
         {
@@ -69,6 +73,7 @@ namespace ByteBank.WebApp.Testes
             //Assert
             Assert.Contains("img", Driver.PageSource);
         }
+
 
 
     }
